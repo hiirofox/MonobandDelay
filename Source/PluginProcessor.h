@@ -66,8 +66,7 @@ public:
 	float firCoreTmp[MaxFirCoreLen];
 	FirData firtest;
 	float window[FFTFilterSize];
-	FFTFilter ffttestl;
-	FFTFilter ffttestr;
+	FFTFilter ffttest;
 private:
 	//Synth Param
 	static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
@@ -76,3 +75,11 @@ private:
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LModelAudioProcessor)
 };
 
+/*
+计划：添加UI
+实现调delay
+实现调vol
+实现调pan
+实现调pitch shift
+
+*/

@@ -28,8 +28,7 @@ LModelAudioProcessor::LModelAudioProcessor()
 	{
 		window[i] = 0.5 - 0.5 * cosf((float)i / FFTFilterSize * 2.0 * M_PI);//加窗
 	}
-	FFTFilterInit(&ffttestl, window);
-	FFTFilterInit(&ffttestr, window);
+	FFTFilterInit(&ffttest, window);
 }
 
 
@@ -176,21 +175,16 @@ void LModelAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 		*/
 		if (x >= freql && x <= freqr)
 		{
-			ffttestl.core[i].re = 1.0;
-			ffttestr.core[i].re = 1.0;
-			ffttestl.core[i].im = 0.0;
-			ffttestr.core[i].im = 0.0;
+			ffttest.core[i].re = 1.0;
+			ffttest.core[i].im = 0.0;
 		}
 		else
 		{
-			ffttestl.core[i].re = 0.0;
-			ffttestr.core[i].re = 0.0;
-			ffttestl.core[i].im = 0.0;
-			ffttestr.core[i].im = 0.0;
+			ffttest.core[i].re = 0.0;
+			ffttest.core[i].im = 0.0;
 		}
 	}
-	FFTFilterProc(&ffttestl, recbufl, wavbufl, numSamples);
-	FFTFilterProc(&ffttestr, recbufr, wavbufr, numSamples);
+	FFTFilterProcStereo(&ffttest, recbufl, recbufr, wavbufl, wavbufr, numSamples);
 
 }
 
