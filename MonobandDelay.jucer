@@ -5,6 +5,8 @@
   <MAINGROUP id="m4hNeY" name="MonobandDelay">
     <GROUP id="{91D530FD-C1A3-38CB-7FA0-E99706982DFE}" name="Source">
       <GROUP id="{7778B178-67B2-F334-CFE4-F8B11C1A2FB9}" name="dsp">
+        <FILE id="lo3hpi" name="multiband.h" compile="0" resource="0" file="Source/dsp/multiband.h"/>
+        <FILE id="ybO9nW" name="multiband.cpp" compile="1" resource="0" file="Source/dsp/multiband.cpp"/>
         <FILE id="lVgEsW" name="complex.cpp" compile="1" resource="0" file="Source/dsp/complex.cpp"/>
         <FILE id="GyAM95" name="complex.h" compile="0" resource="0" file="Source/dsp/complex.h"/>
         <FILE id="NhvPbS" name="fft.cpp" compile="1" resource="0" file="Source/dsp/fft.cpp"/>
@@ -13,6 +15,8 @@
         <FILE id="haQ2hF" name="fft_filter.h" compile="0" resource="0" file="Source/dsp/fft_filter.h"/>
         <FILE id="drPpEC" name="fir.cpp" compile="1" resource="0" file="Source/dsp/fir.cpp"/>
         <FILE id="YsBzbZ" name="fir.h" compile="0" resource="0" file="Source/dsp/fir.h"/>
+        <FILE id="jMTHyk" name="delay.cpp" compile="1" resource="0" file="Source/dsp/delay.cpp"/>
+        <FILE id="xjFHqU" name="delay.h" compile="0" resource="0" file="Source/dsp/delay.h"/>
       </GROUP>
       <GROUP id="{066ED251-DB45-8B45-B44F-CFBCC379F1A5}" name="ui">
         <FILE id="tiCsqo" name="LM_slider.cpp" compile="1" resource="0" file="Source/ui/LM_slider.cpp"/>

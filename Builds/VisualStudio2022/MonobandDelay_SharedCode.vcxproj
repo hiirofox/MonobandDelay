@@ -139,10 +139,12 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\dsp\multiband.cpp"/>
     <ClCompile Include="..\..\Source\dsp\complex.cpp"/>
     <ClCompile Include="..\..\Source\dsp\fft.cpp"/>
     <ClCompile Include="..\..\Source\dsp\fft_filter.cpp"/>
     <ClCompile Include="..\..\Source\dsp\fir.cpp"/>
+    <ClCompile Include="..\..\Source\dsp\delay.cpp"/>
     <ClCompile Include="..\..\Source\ui\LM_slider.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
@@ -2518,10 +2520,12 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\dsp\multiband.h"/>
     <ClInclude Include="..\..\Source\dsp\complex.h"/>
     <ClInclude Include="..\..\Source\dsp\fft.h"/>
     <ClInclude Include="..\..\Source\dsp\fft_filter.h"/>
     <ClInclude Include="..\..\Source\dsp\fir.h"/>
+    <ClInclude Include="..\..\Source\dsp\delay.h"/>
     <ClInclude Include="..\..\Source\ui\LM_slider.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>

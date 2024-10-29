@@ -24,11 +24,15 @@ LModelAudioProcessor::LModelAudioProcessor()
 #endif
 {
 	//firInit(&firtest);
+	/*
 	for (int i = 0; i < FFTFilterSize; ++i)
 	{
 		window[i] = 0.5 - 0.5 * cosf((float)i / FFTFilterSize * 2.0 * M_PI);//加窗
 	}
 	FFTFilterInit(&ffttest, window);
+	*/
+	MultibandInit(&multiband);
+	MultibandSetFilterFreq(&multiband);
 }
 
 
@@ -161,31 +165,13 @@ void LModelAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 
 	float freql = *Params.getRawParameterValue("freql");
 	float freqr = *Params.getRawParameterValue("freqr");
-	freql = expf((freql - 1.0) * 8);
-	freqr = expf((freqr - 1.0) * 8);
-	//firApplyBPF(&firtest, freql, freqr, 512);
-	//firProcStereo(&firtest, recbufl, recbufr, wavbufl, wavbufr, numSamples);//垃圾fir又慢又大
-	for (int i = 0; i < FFTFilterSize / 2; ++i)
-	{
-		float x = (float)i / FFTFilterSize / 2;
-		/*
-		complex_f32_t disp = { cosf(x * x * freql * 1000000.0),sinf(x * x * freql * 1000000.0) };
-		ffttestl.core[i] = disp;
-		ffttestr.core[i] = disp;
-		*/
-		if (x >= freql && x <= freqr)
-		{
-			ffttest.core[i].re = 1.0;
-			ffttest.core[i].im = 0.0;
-		}
-		else
-		{
-			ffttest.core[i].re = 0.0;
-			ffttest.core[i].im = 0.0;
-		}
-	}
-	FFTFilterProcStereo(&ffttest, recbufl, recbufr, wavbufl, wavbufr, numSamples);
+	//freql = expf((freql - 1.0) * 8);
+	//freqr = expf((freqr - 1.0) * 8);
+	//FFTFilterApplyBPF(&ffttest, freql, freqr);
+	//FFTFilterProcStereo(&ffttest, recbufl, recbufr, wavbufl, wavbufr, numSamples);
 
+	MultibandSetLinearArrangement(&multiband, freql * 48000, freqr * 48000);
+	MultibandProcStereo(&multiband, recbufl, recbufr, wavbufl, wavbufr, numSamples);
 }
 
 //==============================================================================

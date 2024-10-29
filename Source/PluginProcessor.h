@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "dsp/fir.h"
 #include "dsp/fft_filter.h"
+#include "dsp/multiband.h"
 
 //==============================================================================
 /**
@@ -67,6 +68,8 @@ public:
 	FirData firtest;
 	float window[FFTFilterSize];
 	FFTFilter ffttest;
+
+	Multiband multiband;
 private:
 	//Synth Param
 	static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();

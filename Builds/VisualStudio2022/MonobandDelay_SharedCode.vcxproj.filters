@@ -625,6 +625,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\dsp\multiband.cpp">
+      <Filter>MonobandDelay\Source\dsp</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\dsp\complex.cpp">
       <Filter>MonobandDelay\Source\dsp</Filter>
     </ClCompile>
@@ -635,6 +638,9 @@
       <Filter>MonobandDelay\Source\dsp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\dsp\fir.cpp">
+      <Filter>MonobandDelay\Source\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\dsp\delay.cpp">
       <Filter>MonobandDelay\Source\dsp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ui\LM_slider.cpp">
@@ -3189,6 +3195,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\dsp\multiband.h">
+      <Filter>MonobandDelay\Source\dsp</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\dsp\complex.h">
       <Filter>MonobandDelay\Source\dsp</Filter>
     </ClInclude>
@@ -3199,6 +3208,9 @@
       <Filter>MonobandDelay\Source\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\dsp\fir.h">
+      <Filter>MonobandDelay\Source\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\dsp\delay.h">
       <Filter>MonobandDelay\Source\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ui\LM_slider.h">
