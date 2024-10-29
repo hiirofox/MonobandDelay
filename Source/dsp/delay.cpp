@@ -34,7 +34,7 @@ void DelayProcStereo(Delay* dat, const float* inbufl, const float* inbufr, float
 
 	for (int i = 0; i < numSamples; ++i)
 	{
-		int inpos = (int)(pos + smoothTime / DelayTimeSmoothSize) % MaxDelaySize;
+		int inpos = (int)(pos + smoothTime / DelayTimeSmoothSize + 1) % MaxDelaySize;
 		bufl[inpos] = inbufl[i];
 		bufr[inpos] = inbufr[i];
 		int outpos = pos % MaxDelaySize;

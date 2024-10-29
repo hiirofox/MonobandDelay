@@ -5,7 +5,7 @@
 #include "delay.h"
 
 #define M_PI 3.1415926535897932384626
-#define MultibandNum 10
+#define MultibandNum 48
 
 typedef struct
 {
@@ -16,6 +16,8 @@ typedef struct
 
 	float tmpbufl[16384];//不怕死可以弄小一点
 	float tmpbufr[16384];
+	float tmpbufl2[16384];
+	float tmpbufr2[16384];
 }Multiband;
 
 void MultibandInit(Multiband* dat);

@@ -12,6 +12,13 @@ void MultibandInit(Multiband* dat)
 		DelayInit(&dat->delay[i]);
 	}
 	dat->num = MultibandNum;
+	for (int i = 0; i < 16384; ++i)
+	{
+		dat->tmpbufl[i] = 0;
+		dat->tmpbufr[i] = 0;
+		dat->tmpbufl2[i] = 0;
+		dat->tmpbufr2[i] = 0;
+	}
 }
 
 void MultibandProcStereo(Multiband* dat, const float* inbufl, const float* inbufr, float* outbufl, float* outbufr, int numSamples)
@@ -21,21 +28,28 @@ void MultibandProcStereo(Multiband* dat, const float* inbufl, const float* inbuf
 	auto& num = dat->num;
 	auto& tmpbufl = dat->tmpbufl;
 	auto& tmpbufr = dat->tmpbufr;
+	auto& tmpbufl2 = dat->tmpbufl2;
+	auto& tmpbufr2 = dat->tmpbufr2;
 
 	for (int i = 0; i < numSamples; ++i)
 	{
-		outbufl[i] = 0;
-		outbufr[i] = 0;
+		tmpbufl2[i] = 0;
+		tmpbufr2[i] = 0;
 	}
 	for (int i = 0; i < num; ++i)
 	{
 		FFTFilterProcStereo(&filt[i], inbufl, inbufr, tmpbufl, tmpbufr, numSamples);
-		//DelayProcStereo(&delay[i], tmpbufl, tmpbufr, tmpbufl, tmpbufr, numSamples);
+		DelayProcStereo(&delay[i], tmpbufl, tmpbufr, tmpbufl, tmpbufr, numSamples);
 		for (int j = 0; j < numSamples; ++j)
 		{
-			outbufl[j] += tmpbufl[j];//!
-			outbufr[j] += tmpbufr[j];
+			tmpbufl2[j] += tmpbufl[j];//!
+			tmpbufr2[j] += tmpbufr[j];
 		}
+	}
+	for (int i = 0; i < numSamples; ++i)
+	{
+		outbufl[i] = tmpbufl2[i];
+		outbufr[i] = tmpbufr2[i];
 	}
 }
 
@@ -59,8 +73,15 @@ void MultibandSetFilterFreq(Multiband* dat)
 	auto& num = dat->num;
 	auto& tmpbufl = dat->tmpbufl;
 	auto& tmpbufr = dat->tmpbufr;
-	for (int i = 0; i < num; ++i)
+	for (int i = 1; i < num; ++i)
 	{
-		FFTFilterApplyBPF(&filt[i], (float)i / num, (float)(i + 1) / num);
+		float l = (float)(i - 1) / (num - 1);
+		float r = (float)(i) / (num - 1);
+		l = expf((l - 1.0) * 7.0);
+		r = expf((r - 1.0) * 7.0);
+		if (i > num / 3) l += 1.0 / FFTFilterSize * 2.0;
+
+		FFTFilterApplyBPF(&filt[i], l, r);
 	}
+	FFTFilterApplyBPF(&filt[0], 0, expf(-7.0));
 }

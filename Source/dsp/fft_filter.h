@@ -5,7 +5,7 @@
 #include <string.h>
 #include "fft.h"
 
-#define FFTFilterSize 2048
+#define FFTFilterSize 1024
 
 typedef struct
 {

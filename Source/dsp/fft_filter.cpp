@@ -143,12 +143,14 @@ void FFTFilterApplyBPF(FFTFilter* dat, float freql, float freqr)
 		dat->core[i].im = 0;
 	}
 	if (freql > freqr) return;
-	int l = freql * (FFTFilterSize / 2 - 1);
-	int r = freqr * (FFTFilterSize / 2 - 1);
+	int l = freql * (FFTFilterSize / 2 - 2);//??
+	int r = freqr * (FFTFilterSize / 2 - 2) + 1;
+
 	dat->core[l].re = 1.0 - freql + (int)freql;
 	dat->core[l].im = 0;
 	dat->core[r].re = freql - (int)freql;
 	dat->core[r].im = 0;
+
 	for (int i = l + 1; i <= r - 1; ++i)
 	{
 		dat->core[i].re = 1.0;
